@@ -156,6 +156,17 @@ target_link_libraries(frcobot_cmd_demo  ${catkin_LIBRARIES}
   z
 )
 
+add_executable(frcobot_clear_error  src/frcobot_clear_error.cpp)
+target_link_libraries(frcobot_clear_error  ${catkin_LIBRARIES}
+  robotAPI
+  xmlrpc
+  xmlrpc_client
+  xmlrpc_util
+  xmlrpc_xmlparse
+  xmlrpc_xmltok
+  z
+)
+
 add_executable(frcobot_status_node ${FRCOBOT_STATUS})
 add_dependencies(frcobot_status_node ${PROJECT_NAME}_generate_messages_cpp)
 target_link_libraries(frcobot_status_node  ${catkin_LIBRARIES})

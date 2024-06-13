@@ -43,6 +43,7 @@ class TaskGenerator():
         self.home_dir = os.path.expanduser('~')
         self.mode = mode
         self.task_executer = True # Set the to False if you want to disable execution to manipulator
+        self.slow_move = True # Set the to False if you want to runn in mav speed
         self.joint_data1 = {}
         self.joint_data2 = {}
         self.joint_data3 = {}
@@ -90,7 +91,7 @@ class TaskGenerator():
             sys.exit()
         return data
 
-    def save_json(self, data_local, save_path=None):
+    def save_json(self, data_local, save_path=None, save_mod="append"):
         if save_path == None:
             save_path = f'{self.package_path}/tasks/{self.robot}/test.json'
         try:
@@ -106,7 +107,13 @@ class TaskGenerator():
             print(f"File are corrupted: {save_path}")
             sys.exit()
 
-        data.append(data_local)
+        if save_mod=="append":
+            data.append(data_local)
+        elif save_mod=="extend":
+            data.extend(data_local)
+        else:
+            print(f"save_mod are incorrect!")
+            sys.exit()
         with open(save_path, 'w') as file:
             json.dump(data, file, indent=1)
 
@@ -186,7 +193,10 @@ class TaskGenerator():
                 if self.task_executer:
                     group_names = self.bot.get_group_names()
                     move_group_interface = MoveGroupInterface(group=group_names[0], frame="world")
-                    move_group_interface.moveToJointPosition(joints=task_joints, positions=task_positions, tolerance=0.01, wait=True)
+                    if self.slow_move:
+                        move_group_interface.moveToJointPosition(joints=task_joints, positions=task_positions, tolerance=0.01, wait=True, max_velocity_scaling_factor=0.3, max_acceleration_scaling_factor=0.3)
+                    else:
+                        move_group_interface.moveToJointPosition(joints=task_joints, positions=task_positions, tolerance=0.01, wait=True)
                     time.sleep(1)
             self.joint_data1["positions"] = position_list
             self.joint_data2[self.mode] = self.joint_data1
@@ -340,7 +350,10 @@ class TaskGenerator():
             pick_pose.pose.orientation.y = ry
             pick_pose.pose.orientation.z = rz
             pick_pose.pose.orientation.w = rw
-            result = move_group_interface.moveToPose(pick_pose, gripper_frame=frame, tolerance=0.01, wait=True)
+            if self.slow_move:
+                result = move_group_interface.moveToPose(pick_pose, gripper_frame=frame, tolerance=0.01, wait=True, max_velocity_scaling_factor=0.3, max_acceleration_scaling_factor=0.3)
+            else:
+                result = move_group_interface.moveToPose(pick_pose, gripper_frame=frame, tolerance=0.01, wait=True)
             if result.error_code.val < 1:
                 print(f"task_executer.py Error: {result.error_code}")
                 sys.exit()
@@ -382,7 +395,7 @@ class TaskGenerator():
                 listener = TransformListener()
                 listener.waitForTransform("/world", f"/{target}", rospy.Time(), rospy.Duration(5.0))
                 pos, quat = listener.lookupTransform("/world", f"/{target}", rospy.Time())
-                mod_quad = self.rot_modify(pos[0],pos[1],pos[2],quat[0],quat[1],quat[2],quat[3], rotation_mode="right_angle", rotation_data = [[0,0,0],[pos[0],pos[1],pos[2]]])
+                mod_quad = self.rot_modify(pos[0],pos[1],pos[2],quat[0],quat[1],quat[2],quat[3], rotation_mode=None, rotation_data = [[0,0,0],[pos[0],pos[1],pos[2]]])
                 self.bot_move(bot_group_names[0],target,pos[0],pos[1],pos[2],mod_quad[0],mod_quad[1],mod_quad[2],mod_quad[3])
                 self.joint_data1[target] = {'position': pos, 'quaternion': quat}
                 self.joint_data2[self.mode] = self.joint_data1
@@ -398,7 +411,7 @@ class TaskGenerator():
                             last_obj = value['spawn_object'][target]
                 # Check if a spawn_object was found and print its coordinates
                 if last_obj:
-                    mod_quad = self.rot_modify(last_obj['x'],last_obj['y'],last_obj['z'],last_obj['rx'],last_obj['ry'],last_obj['rz'],last_obj['rw'], rotation_mode="right_angle", rotation_data = [[0,0,0],[last_obj['x'],last_obj['y'],last_obj['z']]])
+                    mod_quad = self.rot_modify(last_obj['x'],last_obj['y'],last_obj['z'],last_obj['rx'],last_obj['ry'],last_obj['rz'],last_obj['rw'], rotation_mode=None, rotation_data = [[0,0,0],[last_obj['x'],last_obj['y'],last_obj['z']]])
                     self.bot_move(bot_group_names[0],END_COORDINATE,last_obj['x'],last_obj['y'],last_obj['z'],mod_quad[0],mod_quad[1],mod_quad[2],mod_quad[3])
                     print(f"Last spawn_object coordinates: {target} x={last_obj['x']}, y={last_obj['y']}, z={last_obj['z']}")
                     self.joint_data1[END_COORDINATE] = {'position': [last_obj['x'],last_obj['y'],last_obj['z']], 'quaternion': [mod_quad[0],mod_quad[1],mod_quad[2],mod_quad[3]]}
@@ -714,7 +727,11 @@ class TaskGenerator():
             print(f"There's no file in the path: {directory}")
             sys.exit()
         directory_mod = f'{self.package_path}/tasks/{self.robot}/mod_{self.arguments[3]}'
-        
+
+        if os.path.isfile(directory_mod):
+            os.remove(directory_mod)
+            print(f"removed: {directory_mod}")
+            
         data = self.load_json(load_path=directory)
 
         # Recursive function to remove unwanted keys
@@ -731,8 +748,7 @@ class TaskGenerator():
 
         # Filter out empty dictionaries
         filtered_data = [item for item in cleaned_data if any(item.values())]
-
-        self.save_json(filtered_data, save_path=directory_mod)
+        self.save_json(filtered_data, save_path=directory_mod, save_mod="extend")
 
         print("delete_json_sim_content finished")
         sys.exit()

@@ -32,6 +32,7 @@ rosrun moveit_python task_generator.py fr10 detele_json_temp
 
 Pick and place example for fr10:
 ```bash
+0 `rosrun frcobot_hw frcobot_clear_error`
 0 `rosrun moveit_python task_generator.py fr10 clear_scene`
 1 `rosrun moveit_python task_generator.py fr10 remove_object hello_box`
 2 `rosrun moveit_python task_generator.py fr10 joints_position 0 -1.57 1.57 0 0 0`
@@ -66,11 +67,13 @@ Pick and place example for fr3:
 12 `rosrun moveit_python task_generator.py fr3 choose_pipeline OMPL RRTConnect`
 13 `rosrun moveit_python task_generator.py fr3 joints_position 0 -1.57 1.57 0 0 0`
 14 `rosrun moveit_python task_generator.py fr3 detele_json_sim_content test.json`
+15 `rosrun frcobot_hw frcobot_clear_error`
 ```
 
 3. Use executor json example
 ```bash
 rosrun moveit_python task_executer_json.py fr10 test.json
+rosrun moveit_python task_executer_json.py fr10 test_square.json
 rosrun moveit_python task_executer_json.py fr10 task_grip_sim.json
 ```
 
