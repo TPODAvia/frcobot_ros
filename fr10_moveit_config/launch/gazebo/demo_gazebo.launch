@@ -75,4 +75,24 @@
   <!-- 210927 YSW: Added gripper gazebo control publisher -->                                           
   <node name="gripper_gazebo_pub" pkg="fr10_moveit_config" type="gazebo_rh_pub"/>
 
+  <node pkg="nodelet" type="nodelet" name="main_camera_nodelet_manager" args="manager" output="screen" clear_params="true" respawn="true">
+      <param name="num_worker_threads" value="2"/>
+  </node>
+
+  <include file="$(find aruco_pose)/launch/aruco.launch">
+
+      <arg name="image_topic" value="/camera/rgb/image_raw"/>
+      <arg name="image_info" value="/camera/rgb/camera_info"/>
+
+      <arg name="force_init" value="false"/>
+      <arg name="disable" value="false"/>
+
+      <arg name="length" value="0.15"/>
+
+      <arg name="length_override" value="false"/>
+      <arg name="override_id" value="2"/>
+      <arg name="override_lenght" value="0.072"/>
+  
+  </include>
+
 </launch>

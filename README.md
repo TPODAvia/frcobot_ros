@@ -63,6 +63,9 @@ sudo apt-get install xterm
 ```bash
 cd ~/catkin_ws/src
 git clone https://github.com/TPODAvia/frcobot_ros.git
+git clone https://github.com/TPODAvia/aruco_pose.git
+git clone https://github.com/TPODAvia/world_sim.git
+git clone https://github.com/moveit/moveit_calibration.git
 sudo cp ~/catkin_ws/src/frcobot_ros/frcobot_hw/lib/* /opt/ros/noetic/lib
 
 
