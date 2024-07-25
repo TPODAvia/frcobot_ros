@@ -77,6 +77,12 @@ rosrun moveit_python task_executer_json.py fr10 test_square.json
 rosrun moveit_python task_executer_json.py fr10 task_grip_sim.json
 ```
 
+4. Demo squate test
+```bash
+rosrun moveit_python task_generator.py fr10 end_coordinate tf_end 0.3 -0.4 0.1 0.0 -0.707 0.0 -0.707
+rosrun moveit_python task_executer_json.py fr10 test_square.json
+```
+
 ### Additional mods
 
 `task_generator.py` provides sevewral gripper orientations.

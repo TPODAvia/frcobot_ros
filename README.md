@@ -141,3 +141,35 @@ sudo apt-get install mongodb-dev
 sudo apt-get install ros-noetic-warehouse-ros
 sudo apt-get install ros-noetic-warehouse-ros-mongo
 ```
+
+## Working with moveit_callibration
+
+Clone the project to the workspace
+```bash
+cd ~/catkin_ws/src
+git clone https://github.com/moveit/moveit_calibration.git
+mkdir ~/.ros/camera_info
+cp ~/catkin_ws/src/aruco_pose/config/head_camera.yaml ~/.ros/camera_info/head_camera.yaml
+cd ~/catkin_ws
+rosdep install --from-paths src --ignore-src -y
+catkin_make
+source devel/setup.bash
+```
+
+Usage:
+1) We can skip the `target` module as we use our own aruco detector. Note that there's bug of detecting aruco in `moveit_callibration` module
+
+![alt text](./docs/calib1.png)
+
+2) Set all needed data in `content` module
+
+![alt text](./docs/calib2.png)
+
+3) Take at least 5 samples in `calibrate` module
+
+![alt text](./docs/calib3.png)
+
+4) To move the manipulator. See example:
+```bash
+frcobot_ros/docs/moveit_callibarion.yaml
+```
