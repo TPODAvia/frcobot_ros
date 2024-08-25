@@ -49,6 +49,29 @@ Pick and place example for fr10:
 13 `rosrun moveit_python task_generator.py fr10 joints_position 0 -1.57 1.57 0 0 0`
 14 `rosrun moveit_python task_generator.py fr10 detele_json_sim_content test.json`
 ```
+roslaunch depthai_examples stereo_node.launch
+1075596302
+
+Depth camera test 
+rosrun moveit_python task_generator.py fr10 joints_position 1.853 -1.989 -2.448 1.400 0.501 2.578
+rosrun moveit_python task_generator.py fr10 joints_position 1.761 -1.206 -2.520 0.291 0.845 -2.134
+rosrun moveit_python task_generator.py fr10 joints_position 1.232 -1.717 -2.501 1.011 1.530 -0.582
+rosrun moveit_python task_generator.py fr10 joints_position 0.744 -1.385 -2.183 -2.465 -2.204 -1.263
+rosrun moveit_python task_generator.py fr10 joints_position 2.660 -1.527 2.150 1.257 -0.198 -2.349
+
+
+rosrun moveit_python task_generator.py fr10 joints_position 2.223 -1.489 1.848 0.139 -0.407 -0.899
+rosrun moveit_python task_generator.py fr10 joints_position 1.181 -1.989 -2.079 1.117 1.407 2.678
+rosrun moveit_python task_generator.py fr10 joints_position 0.577 -1.613 -2.115 -2.259 -2.361 -1.208
+rosrun moveit_python task_generator.py fr10 joints_position 1.534 -2.058 -2.419 1.272 1.211 -0.559
+rosrun moveit_python task_generator.py fr10 joints_position 2.367 -1.724 -2.508 0.376 0.302 -1.635
+rosrun moveit_python task_generator.py fr10 joints_position 1.554 -2.141 -2.229 1.294 0.816 2.611
+
+
+/camera/depth/image_raw
+/camera/pointcloud/raw
+/camera/rgb/camera_info
+/camera/rgb/image_raw
 
 Pick and place example for fr3:
 ```bash
