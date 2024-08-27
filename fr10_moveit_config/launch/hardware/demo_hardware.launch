@@ -67,11 +67,11 @@
   </include>
 
   <!-- <include file="$(find aruco_pose)/launch/usb_aruco.launch"> -->
-  <!-- <include file="$(find aruco_pose)/launch/oak_aruco.launch">
+  <include file="$(find aruco_pose)/launch/oak_aruco.launch">
     <arg name="enableRviz" value="false"/>
-  </include> -->
-
-  <include file="$(find aruco_pose)/launch/oak_pcl.launch">
   </include>
+
+  <!-- <include file="$(find aruco_pose)/launch/oak_pcl.launch">
+  </include> -->
 
 </launch>

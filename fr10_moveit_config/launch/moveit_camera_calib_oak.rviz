@@ -319,6 +319,16 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: false
+        aruco_1:
+          Value: true
+        aruco_2:
+          Value: true
+        aruco_3:
+          Value: true
+        aruco_4:
+          Value: true
+        aruco_map:
+          Value: true
         base_link:
           Value: true
         forearm_Link:
@@ -378,7 +388,7 @@ Visualization Manager:
         wrist3_Link:
           Value: false
       Marker Alpha: 1
-      Marker Scale: 1
+      Marker Scale: 0.5
       Name: TF
       Show Arrows: true
       Show Axes: true
@@ -397,7 +407,15 @@ Visualization Manager:
                   {}
                 oak_rgb_camera_frame:
                   oak_rgb_camera_optical_frame:
-                    {}
+                    aruco_map:
+                      aruco_1:
+                        {}
+                      aruco_2:
+                        {}
+                      aruco_3:
+                        {}
+                      aruco_4:
+                        {}
                 oak_right_camera_frame:
                   oak_right_camera_optical_frame:
                     {}
@@ -450,12 +468,12 @@ Visualization Manager:
       Move Group Namespace: ""
       Name: HandEyeCalibration
       Planning Scene Topic: move_group/monitored_planning_scene
-      Rx: 0.2008
-      Ry: -0.0988
-      Rz: -2.2469
-      Tx: 0.7752
-      Ty: 1.0664
-      Tz: 0.7214
+      Rx: 0.2474
+      Ry: -0.0895
+      Rz: -2.3113
+      Tx: 0.8108
+      Ty: 1.082
+      Tz: 0.7494
       Value: true
       base: base_link
       camera_info_topic: ""
@@ -469,10 +487,10 @@ Visualization Manager:
       markers, Y: 4
       measured marker size (m): 0,200000
       measured separation (m): 0,020000
-      object: ""
+      object: aruco_map
       sensor: oak-d-base-frame
       sensor_mount_type: 0
-      solver: crigroup/Daniilidis1999
+      solver: crigroup/ParkBryan1994
       target_type: HandEyeTarget/Aruco
   Enabled: true
   Global Options:
@@ -490,7 +508,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/XYOrbit
-      Distance: 4.460623741149902
+      Distance: 2.191439628601074
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -498,17 +516,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 1.377671241760254
-        Y: -0.2019408941268921
-        Z: 1.5959606116666691e-06
+        X: 0.5717812180519104
+        Y: 0.5298290252685547
+        Z: 8.807048743619816e-07
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.5197972059249878
+      Pitch: 0.7897969484329224
       Target Frame: base_link
-      Yaw: 6.091757297515869
+      Yaw: 0.7435688376426697
     Saved: ~
 Window Geometry:
   Displays:
