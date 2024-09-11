@@ -8,8 +8,9 @@ Panels:
         - /Image1
         - /TF1
         - /TF1/Frames1
-      Splitter Ratio: 0.7425600290298462
-    Tree Height: 394
+        - /InteractiveImage1
+      Splitter Ratio: 0.5528846383094788
+    Tree Height: 285
   - Class: rviz/Help
     Name: Help
   - Class: rviz/Views
@@ -45,6 +46,7 @@ Visualization Manager:
     - Acceleration_Scaling_Factor: 0.1
       Class: moveit_rviz_plugin/MotionPlanning
       Enabled: true
+      JointsTab_Use_Radians: false
       Move Group Namespace: ""
       MoveIt_Allow_Approximate_IK: false
       MoveIt_Allow_External_Program: false
@@ -83,11 +85,15 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-          ground_plane_box:
+          marker_link:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
+          realsense_calib_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           realsense_link:
             Alpha: 1
             Show Axes: false
@@ -122,15 +128,15 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-          tf_end:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
           shoulder_Link:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
+          tf_end:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           upperarm_Link:
             Alpha: 1
             Show Axes: false
@@ -211,11 +217,15 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-          ground_plane_box:
+          marker_link:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
+          realsense_calib_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           realsense_link:
             Alpha: 1
             Show Axes: false
@@ -250,15 +260,15 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-          tf_end:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
           shoulder_Link:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
+          tf_end:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           upperarm_Link:
             Alpha: 1
             Show Axes: false
@@ -311,7 +321,9 @@ Visualization Manager:
           Value: true
         forearm_Link:
           Value: true
-        ground_plane_box:
+        marker_link:
+          Value: true
+        realsense_calib_link:
           Value: true
         realsense_link:
           Value: true
@@ -327,9 +339,11 @@ Visualization Manager:
           Value: false
         rh_p12_rn_r2:
           Value: false
-        tf_end:
+        rviz_frame:
           Value: true
         shoulder_Link:
+          Value: true
+        tf_end:
           Value: true
         upperarm_Link:
           Value: true
@@ -356,10 +370,15 @@ Visualization Manager:
                   wrist1_Link:
                     wrist2_Link:
                       wrist3_Link:
+                        marker_link:
+                          {}
+                        realsense_calib_link:
+                          {}
                         realsense_link:
                           {}
                         realsense_phantom_link:
-                          {}
+                          rviz_frame:
+                            {}
                         rh_p12_rn_base:
                           rh_p12_rn_l1:
                             rh_p12_rn_l2:
@@ -369,10 +388,33 @@ Visualization Manager:
                               {}
                         tf_end:
                           {}
-          ground_plane_box:
-            {}
       Update Interval: 0
       Value: true
+    - Camera_Info Topic: /camera/depth/camera_info
+      Class: rviz_plugin_interactive_image/InteractiveImage
+      Enabled: true
+      Image Topic: /camera/depth/image_raw
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: InteractiveImage
+      Normalize Range: false
+      Parent tf: realsense_phantom_link
+      Pitch (deg): 0
+      Point Topic: hello
+      Queue Size: 2
+      React to Mouse Clicks: true
+      React to Mouse DoubleClick: false
+      React to Mouse Move: false
+      React to Mouse Release: false
+      Roll (deg): 0
+      Transport Hint: raw
+      Unreliable: false
+      Value: true
+      X (m): -0.8241118788719177
+      Y (m): 0.11035116016864777
+      Yaw (deg): 0
+      Z (m): 2.655945301055908
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -389,7 +431,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/XYOrbit
-      Distance: 3.113635540008545
+      Distance: 3.3297488689422607
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -397,17 +439,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: -1.3922947645187378
-        Y: -0.16343629360198975
-        Z: 8.195644340958097e-07
+        X: -1.2468945980072021
+        Y: 0.07006120681762695
+        Z: 7.003551445450285e-07
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.44979697465896606
+      Pitch: 0.4497969150543213
       Target Frame: base_link
-      Yaw: 2.159937620162964
+      Yaw: 2.4099364280700684
     Saved: ~
 Window Geometry:
   Displays:
@@ -419,11 +461,13 @@ Window Geometry:
   Hide Right Dock: false
   Image:
     collapsed: false
+  InteractiveImage:
+    collapsed: false
   MotionPlanning:
     collapsed: false
   MotionPlanning - Trajectory Slider:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000200000000000001f30000039efc0200000007fb000000100044006900730070006c006100790073010000003d0000021b000000c900fffffffb0000000800480065006c00700000000342000000bb0000006e00fffffffb0000000a0056006900650077007300000003b0000000b0000000a400fffffffb0000000c00430061006d00650072006100000002ff000001610000000000000000fb0000001e004d006f00740069006f006e00200050006c0061006e006e0069006e00670100000374000001890000000000000000fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000001600000016fb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e0067010000025e0000017d0000017d00ffffff000000010000016c0000039efc0200000001fb0000000a0049006d006100670065010000003d0000039e0000001600ffffff000003cd0000039e00000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000200000000000002720000039efc0200000007fb000000100044006900730070006c006100790073010000003d000001ae000000c900fffffffb0000000800480065006c00700000000342000000bb0000006e00fffffffb0000000a0056006900650077007300000003b0000000b0000000a400fffffffb0000000c00430061006d00650072006100000002ff000001610000000000000000fb0000001e004d006f00740069006f006e00200050006c0061006e006e0069006e00670100000374000001890000000000000000fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000001600000016fb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e006701000001f1000001ea0000017d00ffffff000000010000016c0000039efc0200000003fb0000000a0049006d006100670065010000003d0000019a0000001600fffffffb000000200049006e0074006500720061006300740069007600650049006d00610067006501000001dd000001fe0000001600fffffffb000000200049006e0074006500720061006300740069007600650049006d0061006700650000000204000001d700000000000000000000034e0000039e00000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Views:
     collapsed: false
   Width: 1848
