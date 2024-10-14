@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>rqt_virtual_joy</name>
+  <version>0.1.2</version>
+  <description>Generate Joy messages in rqt</description>
+
+  <maintainer email="hikaru.sugiura@whill.inc">Hikaru Sugiura</maintainer>
+
+  <license>MIT</license>
+
+  <author email="hikaru.sugiura@whill.inc">Hikaru Sugiura</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>std_msgs</depend>
+  <depend>sensor_msgs</depend>
+
+  <build_depend>rospy</build_depend>
+  <build_depend>rqt_gui</build_depend>
+  <build_depend>rqt_gui_py</build_depend>
+
+  <build_export_depend>rospy</build_export_depend>
+  <build_export_depend>rqt_gui</build_export_depend>
+  <build_export_depend>rqt_gui_py</build_export_depend>
+
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>rqt_gui</exec_depend>
+  <exec_depend>rqt_gui_py</exec_depend>
+
+  <export>
+    <rqt_gui plugin="${prefix}/plugin.xml"/>
+  </export>
+</package>

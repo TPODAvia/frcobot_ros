@@ -1,0 +1,17 @@
+<launch>
+
+  <node pkg="tf" type="static_transform_publisher" name="tf_usb_cam"
+          args="0 0 0 0 0 0 oak-d_frame rviz_frame 10"/>
+
+    <node name="rqt_virtual_joy" type="rqt_virtual_joy" pkg="rqt_virtual_joy" output="screen">
+    </node>
+
+    <node name="joy_tf" type="joy_tf.py" pkg="rqt_virtual_joy" output="screen">
+        <param name="map_tf" value="map" />
+        <param name="interactive_tf_base" value="oak-d_frame" />
+        <param name="interactive_tf" value="rviz_frame" />
+        <param name="joystick_tf" value="joystick_tf" />
+        <remap from="joy" to="/joy"/>
+    </node>
+
+</launch>

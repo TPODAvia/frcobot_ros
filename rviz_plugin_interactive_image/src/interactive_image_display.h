@@ -3,6 +3,7 @@
 
 #ifndef Q_MOC_RUN // See: https://bugreports.qt-project.org/browse/QTBUG-22829
 #include <ros/ros.h>
+#include <ros/duration.h>
 #include <sensor_msgs/Image.h>
 #include <image_transport/image_transport.h>
 #include <cv_bridge/cv_bridge.h>

@@ -169,7 +169,23 @@ Usage:
 
 ![alt text](./docs/calib3.png)
 
-4) To move the manipulator. See example:
+4) To move the manipulator in callibration mode. Load the yaml example file in rviz:
 ```bash
 frcobot_ros/docs/moveit_callibarion.yaml
 ```
+
+# Interactive usage using interactive image and joystick
+
+The interaction is included in gazebo simulation, however, for testing puroposes can be run separately
+```bash
+roslaunch rqt_virtual_joy rqt_virtual_joy.launch
+```
+
+To move the tf we need to press the `Publish` button and by selecting any 3 buttons at the bottom, we can move the `joystick_tf` in 6DOF space.
+
+![alt text](./docs/vjoystick.png)
+
+
+To use the interactive screen, set all values that're corresponded to your environment, then to publish you need to click on the white pixel in the interactive image visualisation.
+
+![alt text](./docs/rviz_interactive.png)

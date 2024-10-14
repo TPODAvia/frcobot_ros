@@ -317,6 +317,8 @@ void InteractiveImageDisplay::processMessage(const sensor_msgs::Image::ConstPtr&
 
             br.sendTransform(transformStamped);
 
+            ros::Duration(0.03).sleep();
+
         } catch (const std::exception& e) {
             ROS_ERROR("Error broadcasting transform: %s", e.what());
         }

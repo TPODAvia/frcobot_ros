@@ -422,7 +422,20 @@ class TaskGenerator():
                 else:
                     print(f"No spawn_object with the name {target} found in the JSON data.")
             else:
-                print(f"There's no name '{target}' founded.")
+                try:
+                    listener = TransformListener()
+                    listener.waitForTransform("/world", f"/{target}", rospy.Time(), rospy.Duration(5.0))
+                    pos, quat = listener.lookupTransform("/world", f"/{target}", rospy.Time())
+                    mod_quad = self.rot_modify(pos[0],pos[1],pos[2],quat[0],quat[1],quat[2],quat[3], rotation_mode=None, rotation_data = [[0,0,0],[pos[0],pos[1],pos[2]]])
+                    self.bot_move(bot_group_names[0],END_COORDINATE,pos[0],pos[1],pos[2],mod_quad[0],mod_quad[1],mod_quad[2],mod_quad[3])
+                    self.joint_data1[target] = {'position': pos, 'quaternion': quat}
+                    self.joint_data2[self.mode] = self.joint_data1
+                    self.joint_data3[time.time()] = self.joint_data2
+                    self.save_json(self.joint_data3)
+                    print("end_coordinate finished")
+                except:
+                    print(f"There's no tf name '{target}' founded.")
+
         elif len(self.arguments) == 11:
             bot_link_names = self.bot.get_link_names()
             bot_group_names = self.bot.get_group_names()
