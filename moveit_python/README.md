@@ -26,8 +26,8 @@ rosrun moveit_python task_generator.py fr10 choose_pipeline OMPL RRTConnect
 rosrun moveit_python task_generator.py fr10 choose_pipeline PILZ LIN
 rosrun moveit_python task_generator.py fr10 choose_follow_mode
 rosrun moveit_python task_generator.py fr10 check_json_files
-rosrun moveit_python task_generator.py fr10 detele_json_sim_content test.json
-rosrun moveit_python task_generator.py fr10 detele_json_temp
+rosrun moveit_python task_generator.py fr10 delete_json_sim_content test.json
+rosrun moveit_python task_generator.py fr10 delete_json_temp
 ```
 
 Pick and place example for fr10:
@@ -47,7 +47,7 @@ Pick and place example for fr10:
 11 `rosrun moveit_python task_generator.py fr10 detach_object hello_box tf_end`
 12 `rosrun moveit_python task_generator.py fr10 choose_pipeline OMPL RRTConnect`
 13 `rosrun moveit_python task_generator.py fr10 joints_position 0 -1.57 1.57 0 0 0`
-14 `rosrun moveit_python task_generator.py fr10 detele_json_sim_content test.json`
+14 `rosrun moveit_python task_generator.py fr10 delete_json_sim_content test.json`
 ```
 roslaunch depthai_examples stereo_node.launch
 1075596302
@@ -89,7 +89,7 @@ Pick and place example for fr3:
 11 `rosrun moveit_python task_generator.py fr3 detach_object hello_box tf_end`
 12 `rosrun moveit_python task_generator.py fr3 choose_pipeline OMPL RRTConnect`
 13 `rosrun moveit_python task_generator.py fr3 joints_position 0 -1.57 1.57 0 0 0`
-14 `rosrun moveit_python task_generator.py fr3 detele_json_sim_content test.json`
+14 `rosrun moveit_python task_generator.py fr3 delete_json_sim_content test.json`
 15 `rosrun frcobot_hw frcobot_clear_error`
 ```
 

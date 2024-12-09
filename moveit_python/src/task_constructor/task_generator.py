@@ -28,7 +28,7 @@ class TaskGenerator():
         rospack = rospkg.RosPack()
         self.package_path = rospack.get_path('moveit_python')
 
-        if mode not in ["check_json_files", "detele_json_sim_content", "detele_json_temp"]:
+        if mode not in ["check_json_files", "delete_json_sim_content", "delete_json_temp"]:
             self.bot = moveit_commander.RobotCommander()
             if robot_name == "robot":
                 robot_name = self.bot.get_group_names()[0]
@@ -65,8 +65,8 @@ class TaskGenerator():
             "choose_follow_mode": self.choose_follow_mode,
             "clear_scene": self.clear_scene,
             "check_json_files": self.check_json_files,
-            "detele_json_sim_content": self.detele_json_sim_content,
-            "detele_json_temp": self.detele_json_temp,
+            "delete_json_sim_content": self.delete_json_sim_content,
+            "delete_json_temp": self.delete_json_temp,
         }
 
         action = mode_actions.get(mode)
@@ -717,7 +717,7 @@ class TaskGenerator():
             print("Example: rosrun moveit_python task_generator.py fr10 check_json_files")
             sys.exit()
 
-    def detele_json_temp(self):
+    def delete_json_temp(self):
         print("test.json and mod_test.json will be deleted? y/n")
         answer = input()
         if answer.lower() == "y":
@@ -731,10 +731,10 @@ class TaskGenerator():
                 print(f"removed: {directory_mod}")
         else:
             print("Files are not deleted")
-        print("detele_json_temp finished")
+        print("delete_json_temp finished")
         sys.exit()
 
-    def detele_json_sim_content(self):
+    def delete_json_sim_content(self):
         directory = f'{self.package_path}/tasks/{self.robot}/{self.arguments[3]}'
         if not os.path.isfile(directory):
             print(f"There's no file in the path: {directory}")
@@ -788,8 +788,8 @@ if __name__ == "__main__":
                 print("rosrun moveit_python task_generator.py fr10 choose_pipeline PILZ LIN")
                 print("rosrun moveit_python task_generator.py fr10 choose_follow_mode")
                 print("rosrun moveit_python task_generator.py fr10 check_json_files")
-                print("rosrun moveit_python task_generator.py fr10 detele_json_sim_content test.json")
-                print("rosrun moveit_python task_generator.py fr10 detele_json_temp")
+                print("rosrun moveit_python task_generator.py fr10 delete_json_sim_content test.json")
+                print("rosrun moveit_python task_generator.py fr10 delete_json_temp")
                 sys.exit()
         print("Error usage: rosrun moveit_python task_generator.py arg1 arg2 arg3 arg4 etc..")
         sys.exit()
